@@ -20,7 +20,7 @@ $files = glob('workspace/in_frames/*'); // get all file names
     foreach($files as $file)
     { // iterate files
         $fileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
-        if(is_file($file) && $fileType!="txt")
+        if(is_file($file) && $fileType!="txt" && $fileType != "php")
         {
             unlink($file); // delete file
         }

@@ -1,7 +1,7 @@
 <?php
-$workspaceDir = "workspace/";
-$target_dir = "uploads/";
-$codeDir = "code/";
+$workspaceDir = getcwd();
+$target_dir = "../uploads/";
+$codeDir = "../code/";
 
 $foundFile = 0;
 $scan = scandir($target_dir);
@@ -55,7 +55,7 @@ function Anamorphise($src, $dst)
   
     
     closedir($dir);
-    $command = escapeshellcmd('python /workspace/Splicer.py');
+    $command = escapeshellcmd('python Splicer.py');
     $output = shell_exec($command);
     echo $output;
 }
