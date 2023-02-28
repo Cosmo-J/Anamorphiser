@@ -15,7 +15,6 @@ foreach($scan as $file)
             $foundFile = 1;
            echo "ANAMORPHISEING $file";
            copy("$target_dir/$file","$workspaceDir/$file");
-           Anamorphise($codeDir,$workspaceDir);
         }
     }
     else 
@@ -29,37 +28,11 @@ if($foundFile == 0)
 
 }
 
+$command = escapeshellcmd('python3 Splicer.py');
+$output = shell_exec($command);
+echo $output;
 
-function Anamorphise($src, $dst) 
-{
-    // open the source directory
-    $dir = opendir($src); 
-  
-    // Loop through the files in source directory
-    while( $file = readdir($dir) ) { 
-  
-        if (( $file != '.' ) && ( $file != '..' )) { 
-            if ( is_dir($src . '/' . $file) ) 
-            { 
-  
-                // Recursively calling custom copy function
-                // for sub directory 
-                Anamorphise($src . '/' . $file, $dst . '/' . $file); 
-  
-            } 
-            else { 
-                copy($src . '/' . $file, $dst . '/' . $file); 
-            } 
-        } 
-    } 
-  
-    
-    closedir($dir);
-    $command = escapeshellcmd('python3 Splicer.py');
-    $output = shell_exec($command);
-    echo $output;
-	$command = escapeshellcmd('sudo chmod +x anamorph_movie');
-	$output = shell_exec($command);
-	echo $output;
-}
+
+
+
 ?>
