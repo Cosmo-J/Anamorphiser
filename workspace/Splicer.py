@@ -86,7 +86,7 @@ for i in files:
         end = time.time()
         printProgressBar(count + 1, numFrames, end-start, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
-os.system('anamorph_movie')
+os.system('anamorph_movie.exe')
 
 #combines images back into movie
 image_folder = 'out_frames'
