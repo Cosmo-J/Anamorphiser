@@ -17,7 +17,6 @@ foreach($scan as $file)
            copy("$target_dir/$file","$workspaceDir/$file");
            Anamorphise($codeDir,$workspaceDir);
         }
-        break;
     }
     else 
     {
