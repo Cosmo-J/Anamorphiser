@@ -55,8 +55,11 @@ function Anamorphise($src, $dst)
   
     
     closedir($dir);
-    $command = escapeshellcmd('python Splicer.py');
+    $command = escapeshellcmd('python3 Splicer.py');
     $output = shell_exec($command);
     echo $output;
+	$command = escapeshellcmd('sudo chmod +x anamorph_movie');
+	$output = shell_exec($command);
+	echo $output;
 }
 ?>
