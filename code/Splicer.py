@@ -6,6 +6,7 @@ import time
 import math
 import sys
 import colorama
+import subprocess
 
 colorama.init()
 
@@ -54,10 +55,11 @@ def printProgressBar (iteration, total, timeTaken, prefix = '', suffix = '', dec
 
 dir = '.'
 files = glob.glob(os.path.join(dir, '*.mp4'))
-
+fileName = ''
 for i in files:
+    fileName = os.path.basename(i)
     #creates directory for frames
-    path = os.path.join(os.getcwd(),os.path.basename(i) + " frames")
+    path = ("in_frames")
     try:
         os.makedirs(path)
     except OSError as e:
@@ -84,4 +86,23 @@ for i in files:
         end = time.time()
         printProgressBar(count + 1, numFrames, end-start, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
-os.system(anamorph_movie.exe)
+os.system('anamorph_movie.exe')
+
+#combines images back into movie
+image_folder = 'out_frames'
+video_name = fileName + 'Anamorphised.mp4'
+
+images = [img for img in os.listdir(image_folder) if img.endswith(".jpg")]
+frame = cv2.imread(os.path.join(image_folder, images[0]))
+height, width, layers = frame.shape
+
+video = cv2.VideoWriter(video_name, 0, 24, (width,height))
+
+for image in images:
+    video.write(cv2.imread(os.path.join(image_folder, image)))
+
+cv2.destroyAllWindows()
+video.release()
+
+
+
