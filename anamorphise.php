@@ -1,5 +1,8 @@
 <?php
+$workspaceDir = "workspace/";
 $target_dir = "uploads/";
+$codeDir = "code/";
+
 $foundFile = 0;
 $scan = scandir($target_dir);
 foreach($scan as $file) 
@@ -11,6 +14,8 @@ foreach($scan as $file)
         {
             $foundFile = 1;
            echo "ANAMORPHISEING $file";
+           copy("$target_dir/$file","$workspaceDir/$file");
+           Anamorphise($codeDir,$workspaceDir);
         }
         break;
     }
@@ -25,4 +30,30 @@ if($foundFile == 0)
 
 }
 
+
+function Anamorphise($src, $dst) 
+{
+    // open the source directory
+    $dir = opendir($src); 
+  
+    // Loop through the files in source directory
+    while( $file = readdir($dir) ) { 
+  
+        if (( $file != '.' ) && ( $file != '..' )) { 
+            if ( is_dir($src . '/' . $file) ) 
+            { 
+  
+                // Recursively calling custom copy function
+                // for sub directory 
+                Anamorphise($src . '/' . $file, $dst . '/' . $file); 
+  
+            } 
+            else { 
+                copy($src . '/' . $file, $dst . '/' . $file); 
+            } 
+        } 
+    } 
+  
+    closedir($dir);
+}
 ?>
