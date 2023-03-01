@@ -101,6 +101,6 @@ outFileName = "output" + curtime + ".mp4"
 ffmpegCom =  "ffmpeg -f image2 -r 24 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p " + outFileName
 os.system(ffmpegCom)
 
-shutil.move(thisDir+"/"+outFileName, "../outputs")
+shutil.copyfile(thisDir+"/"+outFileName, "../outputs")
 
 print('Video made! Return to previous page to download')
