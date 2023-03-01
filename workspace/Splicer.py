@@ -8,6 +8,7 @@ import sys
 import colorama
 import subprocess
 import shutil
+import datetime
 
 colorama.init()
 
@@ -87,11 +88,20 @@ for i in files:
 
         count += 1
         end = time.time()
-        printProgressBar(count + 1, numFrames, end-start, prefix = 'Progress:', suffix = 'Complete', length = 50)
+        #printProgressBar(count + 1, numFrames, end-start, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
 #runs anamorph_video
 thisDir = os.getcwd()
 exeDir = thisDir+'/anamorph_movie'
 subprocess.call(exeDir)
-os.system("ffmpeg -f image2 -r 24 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p test.mp4")
+
+now = str(datetime.datetime.now())[:19]
+now = now.replace(":","_")
+
+outFileName = fileName + str(now) + ".mp4"
+ffmpegCom =  "ffmpeg -f image2 -r 24 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p " + outFileName
+os.system(ffmpegCom)
+
+shutil.move(thisDir+"/"+outFileName, "../outputs")
+
 print('Video made! Return to previous page to download')
