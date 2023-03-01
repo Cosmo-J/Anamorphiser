@@ -8,7 +8,7 @@ import sys
 import colorama
 import subprocess
 import shutil
-import datetime
+from time import gmtime, strftime
 
 colorama.init()
 
@@ -95,10 +95,9 @@ thisDir = os.getcwd()
 exeDir = thisDir+'/anamorph_movie'
 subprocess.call(exeDir)
 
-now = str(datetime.datetime.now())
-now = now.replace(":","_")
+curtime = str(strftime("%d_%H_%M_%S", gmtime()))
 
-outFileName = "output" + str(now) + ".mp4"
+outFileName = "output" + curtime + ".mp4"
 ffmpegCom =  "ffmpeg -f image2 -r 24 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p " + outFileName
 os.system(ffmpegCom)
 
