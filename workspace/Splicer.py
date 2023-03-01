@@ -104,4 +104,4 @@ os.system(ffmpegCom)
 shutil.move(thisDir+"/"+outFileName, "../outputs")
 
 print('Video made! Return to previous page to download')
-subprocess.call("php ../reset.php")
+#subprocess.call("php ../reset.php")

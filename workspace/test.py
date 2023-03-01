@@ -1,5 +1,3 @@
-from time import gmtime, strftime
+import subprocess
 
-curtime = str(strftime("%d_%H_%M_%S", gmtime()))
-
-print(curtime)
+subprocess.call("php /../resest.php")
