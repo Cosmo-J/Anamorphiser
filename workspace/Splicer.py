@@ -92,32 +92,6 @@ for i in files:
 #runs anamorph_video
 thisDir = os.getcwd()
 exeDir = thisDir+'/anamorph_movie'
-#subprocess.call(exeDir)
-
-
-#makes video
-
-path = 'out_frames/'
-out_video_name = 'output.avi'
-
-pre_imgs = os.listdir(path)
-# print(pre_imgs)
-img = []
-
-for i in pre_imgs:
-    i = path+i
-    # print(i)
-    img.append(i)
-
-
-size = (1000,1000)
-# print(size)
-
-video = cv2.VideoWriter('output.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 24, size) #output video name, fourcc, fps, size
-
-for i in range(len(img)): 
-    video.write(cv2.imread(img[i]))
-    print('frame ', i+1, ' of ', len(img))
-
-video.release()
+subprocess.call(exeDir)
+os.system("ffmpeg -f image2 -r 24 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p test.mp4")
 print('Video made! Return to previous page to download')
