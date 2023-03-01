@@ -7,6 +7,7 @@ import math
 import sys
 import colorama
 import subprocess
+import shutil
 
 colorama.init()
 
@@ -17,7 +18,7 @@ totalEstimate = 0
 def MakeEstimate(totalIts):
     total = 0
     for i in timesTaken:
-        total+=i 
+        total+=i
     x = (total/len(timesTaken) * totalIts) - total
     if x >=3600:
         #format hours
@@ -27,7 +28,7 @@ def MakeEstimate(totalIts):
         return str(round(x/60,2)) + " minutes"
     elif x < 60:
         return str(round(x,2)) + " seconds"
-    
+
 
 # Print iterations progress
 def printProgressBar (iteration, total, timeTaken, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
@@ -37,7 +38,7 @@ def printProgressBar (iteration, total, timeTaken, prefix = '', suffix = '', dec
     filledLength = int(length * iteration // total)
     bar = fill * filledLength + '-' * (length - filledLength)
 
-    
+
 
     timesTaken.append(timeTaken)
     totalEstimate = MakeEstimate(total)
@@ -47,7 +48,7 @@ def printProgressBar (iteration, total, timeTaken, prefix = '', suffix = '', dec
     print(f'\rTime remaining: {estimate}', end = "\033[A\r")
     #print(f'\nTime remaining: {estimate}', end = printEnd)
     # Print New Line on Complete
-    if iteration == total: 
+    if iteration == total:
         print()
 
 
@@ -81,7 +82,7 @@ for i in files:
         cv2.imwrite(os.path.join(path, "frame%d.jpg" % count), image)     # save frame as JPEG
        # if cv2.waitKey(10) == 27:                     # exit if Escape is
        #     break
-        
+
         count += 1
         end = time.time()
         printProgressBar(count + 1, numFrames, end-start, prefix = 'Progress:', suffix = 'Complete', length = 50)
@@ -90,10 +91,9 @@ for i in files:
 thisDir = os.getcwd()
 exeDir = thisDir+'/anamorph_movie'
 subprocess.call(exeDir)
-print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+print("               Output.mp4 made! Go to previous page and download")
 
 #makes video
-os.system("ffmpeg -f image2 -r 60 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p test.mp4")
+os.system("ffmpeg -f image2 -r 24 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p test.mp4")
 
-
-
+shutil.move(os.getcwd()+'/output.mp4', "../")
