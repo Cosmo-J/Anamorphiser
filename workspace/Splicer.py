@@ -88,11 +88,12 @@ for i in files:
 
 #runs anamorph_video
 thisDir = os.getcwd()
-exeDir = thisDir+'/anamorph_video'
+exeDir = thisDir+'/anamorph_movie'
 subprocess.call(exeDir)
+print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
 #makes video
-os.system("ffmpeg -f image2 -r 60 -i out_frames/*%03d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p test.mp4")
+os.system("ffmpeg -f image2 -r 60 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p test.mp4")
 
 
 
