@@ -1,3 +1,3 @@
 import subprocess
 
-subprocess.call("php /../resest.php")
+subprocess.call("php reset.php")

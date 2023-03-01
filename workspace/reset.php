@@ -1,5 +1,5 @@
 <?php
-$files = glob('workspace/in_frames/*'); // get all file names
+$files = glob('in_frames/*'); // get all file names
     foreach($files as $file){ // iterate files
         $fileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
         if(is_file($file) && $fileType!="txt")
@@ -7,7 +7,7 @@ $files = glob('workspace/in_frames/*'); // get all file names
             unlink($file); // delete file
         }
     }
-    $files = glob('workspace/out_frames/*'); // get all file names
+    $files = glob('out_frames/*'); // get all file names
     foreach($files as $file){ // iterate files
 
         $fileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
@@ -25,7 +25,7 @@ $files = glob('workspace/in_frames/*'); // get all file names
             unlink($file); // delete file
         }
     }
-    $files = glob('uploads/*'); // get all file names
+    $files = glob('/../uploads/*'); // get all file names
     foreach($files as $file)
     { // iterate files
         $fileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
