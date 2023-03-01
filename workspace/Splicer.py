@@ -95,7 +95,7 @@ thisDir = os.getcwd()
 exeDir = thisDir+'/anamorph_movie'
 subprocess.call(exeDir)
 
-now = str(datetime.datetime.now())[:19]
+now = str(datetime.datetime.now())
 now = now.replace(":","_")
 
 outFileName = fileName + str(now) + ".mp4"
