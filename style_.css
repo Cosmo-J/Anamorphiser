@@ -21,6 +21,14 @@ body
     transform: translate(-50%,-50%);
     font-size: 30px;
 }
+#load
+{
+    position: absolute;
+    top: 24.53%;
+    left: 24%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+}
 #videos
 {
     position: absolute;
