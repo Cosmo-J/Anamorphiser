@@ -48,13 +48,13 @@ if ($uploadOk == 0)
 {
   if ($errorType == 1)
   {
-    echo "Your file was not uploaded because it is not of type .mp4";
+    echo "Your file was not uploaded because it is not of type .mp4 or no file selected";
   }
   else if ($errorType == 2)
   {
     echo "A file is already uploaded! Click reset if you want to upload a different file or click anamorphise if you want to process it.";
   }
-  else 
+  else if ($errorType == 0)
   {
     echo "An unknown error occured when uploading your file.";
   }
