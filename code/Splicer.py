@@ -86,23 +86,13 @@ for i in files:
         end = time.time()
         printProgressBar(count + 1, numFrames, end-start, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
-os.system('anamorph_movie')
+#runs anamorph_video
+thisDir = os.getcwd()
+exeDir = thisDir+'/anamorph_video'
+subprocess.call(exeDir)
 
-#combines images back into movie
-image_folder = 'out_frames'
-video_name = fileName + 'Anamorphised.mp4'
-
-images = [img for img in os.listdir(image_folder) if img.endswith(".jpg")]
-frame = cv2.imread(os.path.join(image_folder, images[0]))
-height, width, layers = frame.shape
-
-video = cv2.VideoWriter(video_name, 0, 24, (width,height))
-
-for image in images:
-    video.write(cv2.imread(os.path.join(image_folder, image)))
-
-cv2.destroyAllWindows()
-video.release()
+#makes video
+os.system("ffmpeg -f image2 -r 60 -i out_frames/*%03d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p test.mp4")
 
 
 
