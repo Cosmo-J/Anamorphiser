@@ -1,0 +1,59 @@
+body 
+{
+    background-color: black;
+    color: azure;
+}
+
+#fileToUpload 
+{
+    position: absolute;
+    top: 15%;
+    left: 14.7%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+    color :azure;
+}
+#uploadButton
+{
+    position: absolute;
+    top: 19.8%;
+    left: 5.4%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+}
+#videos
+{
+    position: absolute;
+    top: 30%;
+    left: 5.8%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+}
+#anamorphButton
+{
+    position: absolute;
+    top: 24.6%;
+    left: 9.4%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+}
+
+#resetButton
+{
+    position: absolute;
+    top: 35%;
+    left: 2.25%;
+    transform: translate(-50%,-50%);
+    font-size: 20px;
+    color: red;
+}
+#header
+{
+    position: absolute;
+    top: 4%;
+    left: 17%;
+    transform: translate(-50%,-50%);
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: azure;
+}

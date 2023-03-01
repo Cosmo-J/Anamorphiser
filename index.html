@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta = charset="UTF-8">
+<title>ANAMORPHISER</title>
+<link href="style_.css" rel="stylesheet" type="text/css">
+</head>
 <body>
-<script></script>
+
+<div id ="header">
+    <h1>ANAMORPHISER</h1>
+</div>
+
+
 <form action="upload.php" method="post" enctype="multipart/form-data">
-  Select mp4 to upload:
   <input type="file" name="fileToUpload" id="fileToUpload">
-  <input type="submit" value="Upload Video" name="submit">
+  <input type="submit" value="Upload Video" name="submit" id="uploadButton">
 </form>
+
 
 <form action="/Anamorphiser/workspace/anamorphise.php" method="post" enctype="multipart/form-data">
-  <input type="submit" value="Create Anamorphic Video" name="submit">
-</form>
-<h2></h2>
-<form action="reset.php" method="get">
-  <input type="submit" value="Reset">
+  <input type="submit" value="Create Anamorphic Video" name="submit" id="anamorphButton">
 </form>
 
 
-<h2>Processed Videos: </h2>
-<a href = "/Anamorphiser/outputs/">here</a>
+<iframe style="display:none;" name="this"></iframe>
+<form action="reset.php" method="get" target="this">
+  <input type="submit" value="Reset" id ="resetButton">
+</form>
 
 
+<div id ="videos">
+<a href = "/Anamorphiser/outputs/">Processed Videos</a>
+</div>
+
+<div id ="">
+
+</div>
 
 
 

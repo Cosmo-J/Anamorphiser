@@ -1,12 +1,38 @@
+
 <?php
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
-$errorType = 0; //0 -no error 1 -not mp4 2 -unknown error
+$errorType = 0; //0 -no error 1 -not mp4 2 -file already uploaded
 $fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
+
+
+$foundFile = 0;
+$scan = scandir($target_dir);
+foreach($scan as $file) 
+{
+    if(!is_dir("$target_dir/$file"))
+    {
+        $file_parts = pathinfo($file);
+        if($file_parts['extension'] == "mp4")
+        {
+            $foundFile = 1;
+            $errorType = 2;
+            $uploadOk = 0;
+        }
+    }
+    else 
+    {
+      $errorType = 0;
+      $uploadOk = 1;
+    }
+}
+
 // Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
+
+if(isset($_POST["submit"]) && $errorType != 2) 
+{
   if($fileType == "mp4") {
     $uploadOk = 1;
   } else {
@@ -24,8 +50,18 @@ if ($uploadOk == 0)
   {
     echo "Your file was not uploaded because it is not of type .mp4";
   }
+  else if ($errorType == 2)
+  {
+    echo "A file is already uploaded! Click reset if you want to upload a different file or click anamorphise if you want to process it.";
+  }
+  else 
+  {
+    echo "An unknown error occured when uploading your file.";
+  }
   // if everything is ok, try to upload file
-} else {
+} 
+else if ($uploadOk == 1) 
+{
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo "\nThe file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
   } 
