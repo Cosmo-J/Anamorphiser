@@ -15,3 +15,14 @@ function Effect()
         document.getElementById("anamorphButton").nodeValue.replace("Create Anamorphic Video");
     }
 }
+
+function Anamorphise() 
+{
+    var jqXHR = $.ajax({
+        type: "POST",
+        url: "/workspace/Splicer.py",
+        async: false,
+        data: { param: input }
+    });
+}
+

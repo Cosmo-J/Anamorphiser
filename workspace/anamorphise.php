@@ -35,10 +35,16 @@ echo '<script type="text/javascript" src="AmIRunning.js>"',
      'Change(true);',
      '</script>'
 ;
+
+echo '<script type="text/javascript" src="AmIRunning.js>"',
+     'Anamorphise();',
+     '</script>'
+;
+
 }
-$command = escapeshellcmd('python3 Splicer.py');
-$output = shell_exec($command);
-echo $output;
+//$command = escapeshellcmd('python3 Splicer.py');
+//$output = shell_exec($command);
+//echo $output;
 
 
 
