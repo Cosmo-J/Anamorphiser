@@ -29,7 +29,7 @@ if($foundFile == 0)
 
 }
 
-if(foundFile==1)
+if($foundFile==1)
 {
 echo '<script type="text/javascript" src="AmIRunning.js>"',
      'Change(true);',
