@@ -4,6 +4,7 @@
 <meta = charset="UTF-8">
 <title>ANAMORPHISER</title>
 <link href="style_.css" rel="stylesheet" type="text/css">
+<script type = "text/javascript" src="AmIRunning.js"></script>
 </head>
 <body>
 
@@ -17,9 +18,13 @@
   <input type="submit" value="Upload Video" name="submit" id="uploadButton">
 </form>
 
+<script>
+
+
+</script>
 
 <form action="/workspace/anamorphise.php" method="post" enctype="multipart/form-data">
-  <input type="submit" value="Create Anamorphic Video" name="submit" id="anamorphButton">
+  <input type="submit" value="Create Anamorphic Video" onclick="Effect();" name="submit" id="anamorphButton">
 </form>
 
 <!-- <div id ="load">

@@ -29,6 +29,13 @@ if($foundFile == 0)
 
 }
 
+if(foundFile==1)
+{
+echo '<script type="text/javascript" src="AmIRunning.js>"',
+     'Change(true);',
+     '</script>'
+;
+}
 $command = escapeshellcmd('python3 Splicer.py');
 $output = shell_exec($command);
 echo $output;

@@ -34,4 +34,13 @@ $files = glob('in_frames/*'); // get all file names
             unlink($file); // delete file
         }
     }
-    ?>
+
+    {
+        echo '<script type="text/javascript" src="AmIRunning.js>"',
+             'Change(false);',
+             '</script>'
+        ;
+    }
+
+
+?>
