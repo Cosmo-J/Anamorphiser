@@ -6,61 +6,60 @@ body
 
 #fileToUpload 
 {
-    position: absolute;
-    top: 15%;
-    left: 14.7%;
-    transform: translate(-50%,-50%);
+    position: fixed;
+    top: 150px;
+    left: 10px;
     font-size: 30px;
     color :azure;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #uploadButton
 {
-    position: absolute;
-    top: 19.8%;
-    left: 5.4%;
-    transform: translate(-50%,-50%);
+    position: fixed;
+    top: 200px;
+    left: 10px;
     font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #load
 {
-    position: absolute;
-    top: 24.53%;
-    left: 24%;
-    transform: translate(-50%,-50%);
+    position: fixed;
+    top: 222px;
+    left: 375px;
     font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #videos
 {
-    position: absolute;
-    top: 30%;
-    left: 5.8%;
-    transform: translate(-50%,-50%);
+    position: fixed;
+    top: 300px;
+    left: 10px;
     font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #anamorphButton
 {
-    position: absolute;
-    top: 24.6%;
-    left: 9.4%;
-    transform: translate(-50%,-50%);
+    position: fixed;
+    top: 250px;
+    left: 10px;
     font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #resetButton
 {
-    position: absolute;
-    top: 35%;
-    left: 2.25%;
-    transform: translate(-50%,-50%);
+    position: fixed;
+    top: 350px;
+    left: 10px;
     font-size: 20px;
     color: red;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #header
 {
-    position: absolute;
-    top: 4%;
-    left: 17%;
-    transform: translate(-50%,-50%);
+    position: fixed;
+    top: -50px;
+    left: 10px;
     font-size: 40px;
     font-family: Arial, Helvetica, sans-serif;
     color: azure;
