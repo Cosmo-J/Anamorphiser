@@ -16,7 +16,7 @@ $files = glob('in_frames/*'); // get all file names
             unlink($file); // delete file
         }
     }
-    $files = glob('workspace/*'); // get all file names
+    $files = glob('*'); // get all file names
     foreach($files as $file)
     { // iterate files
         $fileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
@@ -25,7 +25,7 @@ $files = glob('in_frames/*'); // get all file names
             unlink($file); // delete file
         }
     }
-    $files = glob('/../uploads/*'); // get all file names
+    $files = glob('/var/www/html/Anamorphiser/uploads/*'); // get all file names
     foreach($files as $file)
     { // iterate files
         $fileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
