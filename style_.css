@@ -10,50 +10,102 @@ body
     top: 150px;
     left: 10px;
     font-size: 30px;
+    width: 494px;
     color :azure;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Consolas,monaco,monospace; 
+    background-color: #2f16a0;
+    color :azure;
+    padding: 3px;
+    border: none;
+}
+#fileToUpload:hover 
+{
+    border: none;
+    background: rgb(115, 0, 255); 
 }
 #uploadButton
 {
     position: fixed;
-    top: 200px;
+    top: 196.66px;
     left: 10px;
+    width: 500px;
     font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Consolas,monaco,monospace; 
+    background-color: #2f16a0;
+    color :azure;
+    padding: 3px;
+    border: none;
+}
+#uploadButton:hover 
+{
+    border: none;
+    background: rgb(115, 0, 255); 
 }
 #load
 {
     position: fixed;
     top: 222px;
-    left: 375px;
+    left: 410px;
     font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Consolas,monaco,monospace; 
+    color :azure;
 }
+
 #videos
 {
     position: fixed;
-    top: 300px;
+    top: 277.5px;
     left: 10px;
+    width: 494px;
     font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Consolas,monaco,monospace; 
+    background-color: #2f16a0;
+    color :azure;
+    padding: 3px;
+    border: none;
+}
+#videos:hover 
+{
+    border: none;
+    background: rgb(115, 0, 255); 
 }
 #anamorphButton
 {
     position: fixed;
-    top: 250px;
+    top: 237px;
     left: 10px;
     font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
+    width: 500px;
+    font-family: Consolas,monaco,monospace; 
+    background-color: #2f16a0;
+    color :azure;
+    padding: 3px;
+    border: none;
+}
+#anamorphButton:hover 
+{
+    border: none;
+    background: rgb(115, 0, 255); 
 }
 
 #resetButton
 {
     position: fixed;
-    top: 350px;
+    top: 318.5px;
     left: 10px;
     font-size: 20px;
-    color: red;
-    font-family: Arial, Helvetica, sans-serif;
+    width: 500px;
+    color :azure;
+    font-family: Consolas,monaco,monospace; 
+    background-color: #2f16a0;
+    padding: 3px;
+    border: none;
+}
+#resetButton:hover 
+{
+    border: none;
+    background: rgb(115, 0, 255); 
+    color :red;
 }
 #header
 {
