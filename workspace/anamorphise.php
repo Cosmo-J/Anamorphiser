@@ -1,8 +1,9 @@
 
 <?php
+//$workspaceDir = "workspace/";
 $workspaceDir = getcwd();
 $target_dir = "../uploads/";
-$codeDir = "../code/";
+//$codeDir = "../code/";
 
 $foundFile = 0;
 $scan = scandir($target_dir);
@@ -42,9 +43,9 @@ echo '<script type="text/javascript" src="AmIRunning.js>"',
 ;
 
 }
-//$command = escapeshellcmd('python3 Splicer.py');
-//$output = shell_exec($command);
-//echo $output;
+$command = escapeshellcmd('python3 Splicer.py');
+$output = shell_exec($command);
+echo $output;
 
 
 
