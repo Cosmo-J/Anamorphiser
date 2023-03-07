@@ -8,12 +8,27 @@ import sys
 import colorama
 import subprocess
 import shutil
+import re
+import unicodedata
 from time import gmtime, strftime
 
+
+
+#removes weird character from input file name
+def Slugify(value, allow_unicode=False):
+    value = str(value)
+    if allow_unicode:
+        value = unicodedata.normalize('NFKC', value)
+    else:
+        value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
+    value = re.sub(r'[^\w\s-]', '', value.lower())
+    return re.sub(r'[-\s]+', '-', value).strip('-_')
+
+
+
+
+
 colorama.init()
-
-#os.remove("../output.mp4")
-
 timesTaken = []
 timeIts = 3
 totalEstimate = 0
@@ -90,6 +105,10 @@ for i in files:
         end = time.time()
         #printProgressBar(count + 1, numFrames, end-start, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
+dir = '.'
+files = glob.glob(os.path.join(dir, '*.mp4'))
+fileName = Slugify(os.path.basename(str(files)))
+
 #runs anamorph_video
 thisDir = os.getcwd()
 exeDir = thisDir+'/anamorph_movie'
@@ -97,7 +116,7 @@ subprocess.call(exeDir)
 
 curtime = str(strftime("%d_%H_%M_%S", gmtime()))
 
-outFileName = "output" + curtime + ".mp4"
+outFileName = fileName + ".mp4"
 ffmpegCom =  "ffmpeg -f image2 -r 24 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p " + outFileName
 os.system(ffmpegCom)
 

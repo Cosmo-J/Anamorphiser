@@ -1,0 +1,3 @@
+- set up git ssh
+- download git repo
+- change file path permissions

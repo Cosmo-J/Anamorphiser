@@ -1,6 +1,6 @@
 background 0
-cone_radius 154.80
-cone_height 112.50
+cone_radius 77.4
+cone_height 112.5
 cone_offset 3
 pov_distance 2000
 out_resolution 1000
