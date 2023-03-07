@@ -107,16 +107,16 @@ for i in files:
 
 dir = '.'
 files = glob.glob(os.path.join(dir, '*.mp4'))
-fileName = Slugify(os.path.basename(str(files)))
+fileName = os.path.basename(str(files))
 
 #runs anamorph_video
 thisDir = os.getcwd()
 exeDir = thisDir+'/anamorph_movie'
 subprocess.call(exeDir)
 
-curtime = str(strftime("%d_%H_%M_%S", gmtime()))
+curtime = str(strftime("%d%S", gmtime()))
 
-outFileName = fileName + ".mp4"
+outFileName = Slugify(os.path.splitext(fileName)[0]) + curtime + ".mp4"
 ffmpegCom =  "ffmpeg -f image2 -r 24 -i out_frames/anamorp_frame%d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p " + outFileName
 os.system(ffmpegCom)
 
