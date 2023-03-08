@@ -29,6 +29,6 @@ function Anamorphise()
 function someFunc() 
 {
 	console.log("HI");
-	Anamorphiser();
-	Effect();
+	//Anamorphiser();
+	//Effect();
 }

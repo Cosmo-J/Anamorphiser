@@ -1,46 +1,64 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta = charset="UTF-8">
-<title>ANAMORPHISER</title>
-<link href="style_.css" rel="stylesheet" type="text/css">
-<script type = "text/javascript" src="AmIRunning.js"></script>
+  <meta=charset="UTF-8">
+  <title>ANAMORPHISER</title>
+  <link href="style_.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="AmIRunning.js"></script>
 </head>
+
 <body>
 
-<div id ="header">
+  <div id="header">
     <h1>AURA ANAMORPHISER</h1>
-</div>
+  </div>
 
 
-<form action="upload.php" method="post" enctype="multipart/form-data">
+
+
+  <!-- <form action="/workspace/anamorphise.php" method="post" enctype="multipart/form-data">
   <input type="file" name="fileToUpload" id="fileToUpload">
   <input type="submit" value="Upload Video" name="submit" id="uploadButton">
-</form>
-
-<script>
+</form>-->
 
 
-</script>
+  <form action="/workspace/anamorphise.php" method="post" enctype="multipart/form-data">
+    <input title= "Select a video here" type="file" name="fileToUpload" id="fileToUpload">
+    <input title= "Upload and Anamorphise selected video" type="submit" value="Create Anamorphic Video" onclick="someFunc();" name="submit" id="anamorphButton">
+  </form>
 
-<form action="/workspace/anamorphise.php" method="post" enctype="multipart/form-data">
-  <input type="submit" value="Create Anamorphic Video" onclick="someFunc();" name="submit" id="anamorphButton">
-</form>
 
-<!-- <div id ="load">
+  <!-- <div id ="load">
 <p>(LET ME LOAD) </p>
 </div> -->
 
-<iframe style="display:none;" name="this"></iframe>
-<form action="/workspace/reset.php" method="get" target="this">
-  <input type="submit" value="Reset" id ="resetButton">
-</form>
+<!--Resets workspace and uploads folder-->
+  <iframe style="display:none;" name="this"></iframe>
+  <form action="/workspace/reset.php" method="get" target="this">
+    <input title = "Click here if it breaks" type="submit" value="Reset" id="resetButton">
+  </form>
+
+<!--Link to outputs tab-->
+  <div title = "See created outputs" id="videos">
+    <a href="/outputs/">Processed Videos</a>
+  </div>
 
 
-<div id ="videos">
-<a href = "/outputs/">Processed Videos</a>
-</div>
-
+  <div>
+    <h2 id="changeLog">Change Log:</h2>
+    <p id="clText">
+      - Combined functionality of "Upload Video" and "Create Anamorphic" Video button.
+      <br>
+      - UI changes.
+      </br>
+      - Added tooltips.
+      <br>
+      - Corrected cone settings.
+      </br>
+    </p>
+  </div>
 
 </body>
+
 </html>
