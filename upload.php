@@ -3,7 +3,7 @@
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
-$errorType = 0; //0 -no error 1 -not mp4 2 -file already uploaded
+$errorType = 0; //0 -no error 1 -not mp4 2 -file already uploaded 3 - too many files on server
 $fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 
@@ -40,7 +40,20 @@ if(isset($_POST["submit"]) && $errorType != 2)
     $uploadOk = 0;
   }
 }
-
+$numFiles;
+$scan = scandir("outputs/");
+foreach ($scan as $file) 
+{
+		if ($file_parts['extension'] == "mp4") 
+		{
+        $numFiles+=1;
+		}
+}
+if($numFiles>=10) 
+{
+  $errorType = 3;
+  $uploadOk = 0;
+}
 
 
 // Check if $uploadOk is set to 0 by an error
@@ -57,6 +70,10 @@ if ($uploadOk == 0)
   else if ($errorType == 0)
   {
     echo "An unknown error occured when uploading your file.";
+  }
+  else if ($errorType == 3)
+  {
+    echo "Too many files on server! Please go to Processed Vides and delete some.";
   }
   // if everything is ok, try to upload file
 } 
