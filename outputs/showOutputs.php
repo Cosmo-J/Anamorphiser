@@ -86,7 +86,7 @@ function DeleteFile($file)
 
 
 echo '<h1 id="numFiles"> ' . $numFiles . '/10</h1>';
-echo '<h2 id="warning"> WARNING DELETED FILES CANT BE RECOVERED <h2>';
+echo '<h2 id="warning"> WARNING DELETED FILES CAN NOT BE RECOVERED <h2>';
 
 
 ?>

@@ -25,7 +25,7 @@ $files = glob('in_frames/*'); // get all file names
             unlink($file); // delete file
         }
     }
-    $files = glob('/var/www/html/uploads/*'); // get all file names
+    $files = glob('/var/www/Anamorphiser/uploads/*'); // get all file names
     foreach($files as $file)
     { // iterate files
         $fileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
