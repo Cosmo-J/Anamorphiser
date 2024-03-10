@@ -36,7 +36,7 @@ $files = glob('in_frames/*'); // get all file names
     }
 
     {
-        echo '<script type="text/javascript" src="AmIRunning.js>"',
+        echo '<script type="text/javascript" src="../AmIRunning.js">',
              'Change(false);',
              '</script>'
         ;

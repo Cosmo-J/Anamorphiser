@@ -23,7 +23,7 @@
 </form>-->
 
 
-  <form action="/workspace/anamorphise.php" method="post" enctype="multipart/form-data">
+  <form action="/workspace/anamorphise.php" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
     <input title= "Select a video here" type="file" name="fileToUpload" id="fileToUpload">
     <input title= "Upload and Anamorphise selected video" type="submit" value="Create Anamorphic Video" onclick="someFunc();" name="submit" id="anamorphButton">
   </form>
@@ -35,7 +35,7 @@
 
 <!--Resets workspace and uploads folder-->
   <iframe style="display:none;" name="this"></iframe>
-  <form action="/workspace/reset.php" method="get" target="this">
+  <form action="/workspace/reset.php" method="get" target="this" accept-charset="UTF-8">
     <input title = "Click here if it breaks" type="submit" value="Reset" id="resetButton">
   </form>
 

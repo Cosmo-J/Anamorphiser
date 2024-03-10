@@ -61,7 +61,7 @@ if ($uploadOk == 0)
         RunScripts($target_dir);
     } else if ($errorType == 0)
      {
-        echo "An unknown error occured when uploading your file.";
+        echo "An unknown error occured when loading your file.";
     }
     else if ($errorType == 3)
     {
@@ -76,7 +76,7 @@ if ($uploadOk == 0)
         RunScripts($target_dir);
     } else
     {
-        echo "An unknown error occured when uploading your file.";
+        echo "An unknown error occured when uploading your file...";
     }
 }
 
@@ -107,12 +107,12 @@ function RunScripts($tDir)
     }
 
     if ($foundFile == 1) {
-        echo '<script type="text/javascript" src="AmIRunning.js>"',
+        echo '<script type="text/javascript" src="AmIRunning.js">',
             'Change(true);',
             '</script>'
         ;
 
-        echo '<script type="text/javascript" src="AmIRunning.js>"',
+        echo '<script type="text/javascript" src="AmIRunning.js">',
             'Anamorphise();',
             '</script>'
         ;

@@ -8,11 +8,11 @@ function Effect()
 {
     if (working ) 
     {
-        document.getElementById("anamorphButton").nodeValue.replace("Running");
+        document.getElementById("anamorphButton").value = "Running";
     } 
     else
     {
-        document.getElementById("anamorphButton").nodeValue.replace("Create Anamorphic Video");
+        document.getElementById("anamorphButton").value = "Create Anamorphic Video";
     }
 }
 
@@ -29,6 +29,6 @@ function Anamorphise()
 function someFunc() 
 {
 	console.log("HI");
-	Anamorphiser();
+	//Anamorphiser(); dont know why this line was here but wasn't doing anything anyway
 	Effect();
 }
