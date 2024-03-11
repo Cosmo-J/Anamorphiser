@@ -1,127 +1,83 @@
 <?php
-$target_dir = "../uploads/";
+header('Content-Type: application/json'); // Ensure JSON response
 
+$target_dir = "../uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
-$errorType = 0; //0 -no error 1 -not mp4 2 -file already uploaded 3 - too many files on server
+$errorType = 0; // 0 -no error, 1 -not mp4, 2 -file already uploaded, 3 - too many files on server
 $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-
-//finds mp4
+// Finds mp4
 $foundFile = 0;
 $scan = scandir($target_dir);
 foreach ($scan as $file) {
     if (!is_dir("$target_dir/$file")) {
         $file_parts = pathinfo($file);
-        if ($file_parts['extension'] == "mp4") {
+        if ($file_parts['extension'] === "mp4") {
             $foundFile = 1;
             $errorType = 2;
             $uploadOk = 0;
+            break; 
         }
+    }
+}
+
+$numFiles = count(array_filter($scan, function ($file) {
+    return pathinfo($file, PATHINFO_EXTENSION) === "mp4";
+}));
+
+if($numFiles >= 10) {
+    $errorType = 3;
+    $uploadOk = 0;
+}
+
+// Processing and error handling
+if ($uploadOk == 0) {
+    $message = "An unknown error occurred when loading your file.";
+    if ($errorType == 1) {
+        $message = "Your file was not uploaded because it is not of type .mp4 or no file selected.";
+    } else if ($errorType == 2) {
+        $message = "File already uploaded.";
+    } else if ($errorType == 3) {
+        $message = "Too many files on server! Please go to Processed Videos and delete some.";
+    }
+
+    echo json_encode(['success' => false, 'message' => $message]);
+    exit;
+} else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        $output = RunScripts($target_dir);
+        echo json_encode(['success' => true, 'message' => "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.", 'output' => $output]);
     } else {
-        $errorType = 0;
-        $uploadOk = 1;
+        echo json_encode(['success' => false, 'message' => "An unknown error occurred when uploading your file..."]);
     }
 }
 
-
-if (isset($_POST["submit"]) && $errorType != 2) {
-    if ($fileType == "mp4") {
-        $uploadOk = 1;
-    } else {
-        $errorType = 1;
-        $uploadOk = 0;
-    }
-}
-
-$numFiles = 0;
-$scan = scandir("../outputs/");
-foreach ($scan as $file) 
-{
-        $file_parts = pathinfo($file);
-		if ($file_parts['extension'] == "mp4") 
-		{
-            $numFiles+=1;
-		}
-}
-if($numFiles>=10) 
-{
-  $errorType = 3;
-  $uploadOk = 0;
-}
-
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0)
- {
-    if ($errorType == 1)
-     {
-        echo "Your file was not uploaded because it is not of type .mp4 or no file selected";
-    } else if ($errorType == 2)
-     {
-        RunScripts($target_dir);
-    } else if ($errorType == 0)
-     {
-        echo "An unknown error occured when loading your file.";
-    }
-    else if ($errorType == 3)
-    {
-        echo "Too many files on server! Please go to Processed Videos and delete some.";
-    }
-    // if everything is ok, try to upload file
-} else if ($uploadOk == 1) 
-{
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file))
-    {
-        echo "\nThe file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
-        RunScripts($target_dir);
-    } else
-    {
-        echo "An unknown error occured when uploading your file...";
-    }
-}
-
-
-
-function RunScripts($tDir)
-{
+function RunScripts($tDir) {
     $workspaceDir = getcwd();
     $target_dir = $tDir;
-
     $foundFile = 0;
+    $output = '';
+
     $scan = scandir($target_dir);
     foreach ($scan as $file) {
         if (!is_dir("$target_dir/$file")) {
             $file_parts = pathinfo($file);
             if ($file_parts['extension'] == "mp4") {
                 $foundFile = 1;
-                echo "ANAMORPHISEING $file";
+                $output .= "ANAMORPHISING $file\n";
                 copy("$target_dir/$file", "$workspaceDir/$file");
+                break;
             }
-        } else {
-            $foundFile = 0;
         }
     }
+
     if ($foundFile == 0) {
-        echo "No .mp4 files found. Please upload a file!";
-
+        $output .= "No .mp4 files found. Please upload a file!\n";
+    } else {
+        $command = escapeshellcmd('python3 Splicer.py');
+        $output .= shell_exec($command);
     }
 
-    if ($foundFile == 1) {
-        echo '<script type="text/javascript" src="AmIRunning.js">',
-            'Change(true);',
-            '</script>'
-        ;
-
-        echo '<script type="text/javascript" src="AmIRunning.js">',
-            'Anamorphise();',
-            '</script>'
-        ;
-
-    }
-    $command = escapeshellcmd('python3 Splicer.py');
-    $output = shell_exec($command);
-    echo $output;
-
+    return $output;
 }
-
-?>
