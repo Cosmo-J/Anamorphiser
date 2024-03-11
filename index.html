@@ -22,27 +22,44 @@
     <input title= "Upload and Anamorphise selected video" type="submit" value="Create Anamorphic Video" onclick="someFunc();" name="submit" id="anamorphButton">
   </form>
 
+	
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById("videoUploadForm").addEventListener("submit",function(e) {
-		e.preventDefault();
-		
-		var formData = new FormData(this);
+  var form = document.getElementById("videoUploadForm");
+  var submitButton = document.getElementById("anamorphButton");
 
-		fetch('/workspace/anamorphise.php', {
-			method: 'POST',
-			body: formData,
-		})
-		.then(response => response.json())
-		.then(data => {
-			console.log(data);
-			alert("Video Processing Started!");
-		});
-	});
+  form.addEventListener("submit", function(e) {
+    e.preventDefault(); 
+
+    submitButton.disabled = true;
+
+    var formData = new FormData(form);
+
+    fetch('/workspace/anamorphise.php', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      alert(data.message || "Video processing started!");
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert("Error processing video. Please try again.");
+    })
+    .finally(() => {
+      submitButton.disabled = false; 
+    });
+  });
 });
-
-
 </script>
+
 
   <!-- <div id ="load">
 <p>(LET ME LOAD) </p>
