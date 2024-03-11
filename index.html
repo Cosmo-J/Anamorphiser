@@ -17,17 +17,32 @@
 
 
 
-  <!-- <form action="/workspace/anamorphise.php" method="post" enctype="multipart/form-data">
-  <input type="file" name="fileToUpload" id="fileToUpload">
-  <input type="submit" value="Upload Video" name="submit" id="uploadButton">
-</form>-->
-
-
-  <form action="/workspace/anamorphise.php" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+  <form id="videoUploadForm" action="/workspace/anamorphise.php" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
     <input title= "Select a video here" type="file" name="fileToUpload" id="fileToUpload">
     <input title= "Upload and Anamorphise selected video" type="submit" value="Create Anamorphic Video" onclick="someFunc();" name="submit" id="anamorphButton">
   </form>
 
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+	document.getElementById("videoUploadForm").addEventListener("submit",function(e) {
+		e.preventDefault();
+		
+		var formData = new FormData(this);
+
+		fetch('/workspace/anamorphise.php', {
+			method: 'POST',
+			body: formData,
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			alert("Video Processing Started!");
+		});
+	});
+});
+
+
+</script>
 
   <!-- <div id ="load">
 <p>(LET ME LOAD) </p>
